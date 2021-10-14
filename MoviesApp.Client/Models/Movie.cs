@@ -1,0 +1,15 @@
+﻿using System;
+
+namespace MoviesApp.Client.Models
+{
+    public class Movie
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Genre { get; set; }
+        public string Rating { get; set; }
+        public string ImageUrl { get; set; }
+        public DateTimeOffset ReleaseDate { get; set; }
+        public string Owner { get; set; }
+    }
+}
