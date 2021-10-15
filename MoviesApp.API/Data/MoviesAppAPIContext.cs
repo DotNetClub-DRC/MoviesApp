@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MoviesApp.API.Models;
-
-namespace MoviesApp.API.Data
+﻿namespace MoviesApp.API.Data
 {
     public class MoviesAppAPIContext : DbContext
     {

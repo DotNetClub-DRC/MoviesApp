@@ -1,13 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MoviesApp.API.Data;
-using MoviesApp.API.Models;
-
-namespace MoviesApp.API.Controllers
+﻿namespace MoviesApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

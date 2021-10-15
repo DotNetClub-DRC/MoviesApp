@@ -1,9 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using MoviesApp.Client.ApiServices;
-using MoviesApp.Client.Models;
-
+﻿
 namespace MoviesApp.Client.Controllers
 {
     public class MoviesController : Controller

@@ -1,9 +1,4 @@
-﻿using MoviesApp.API.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MoviesApp.API.Data
+﻿namespace MoviesApp.API.Data
 {
     public class MoviesContextSeed
     {

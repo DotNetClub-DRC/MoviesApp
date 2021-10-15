@@ -79,7 +79,7 @@ namespace IdentityServer
                     Claims = new List<Claim>
                     {
                         new Claim(JwtClaimTypes.GivenName, "sudi"),
-                        new Claim(JwtClaimTypes.FamilyName, "sudi")
+                        new Claim(JwtClaimTypes.FamilyName, "simba")
                     }
                 }
             };

@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-
-namespace MoviesApp.API.Controllers
+﻿namespace MoviesApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,0 +1,9 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading.Tasks;
+global using Microsoft.Extensions.Logging;
+global using System.Diagnostics;
+global using Microsoft.AspNetCore.Mvc;
+global using MoviesApp.Client.ApiServices;
+global using MoviesApp.Client.Models;

@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using MoviesApp.API.Data;
-
 namespace MoviesApp.API
 {
     public class Program
