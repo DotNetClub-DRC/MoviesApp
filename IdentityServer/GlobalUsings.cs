@@ -13,3 +13,4 @@ global using IdentityServer4.Test;
 global using System.Security.Claims;
 global using System.Text.Json;
 global using IdentityServer4;
+global using IdentityServer4.Models;

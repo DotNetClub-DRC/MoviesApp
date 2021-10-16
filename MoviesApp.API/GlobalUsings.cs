@@ -14,3 +14,4 @@ global using Microsoft.IdentityModel.Tokens;
 global using MoviesApp.API.Models;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
+

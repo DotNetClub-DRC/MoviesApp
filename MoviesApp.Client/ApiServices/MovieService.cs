@@ -1,14 +1,14 @@
-﻿using MoviesApp.Client.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MoviesApp.Client.ApiServices
+﻿namespace MoviesApp.Client.ApiServices
 {
     public class MovieService : IMovieService
     {
+        private IHttpClientFactory _httpClientFactory;
+
+        public MovieService(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+        }
+
         public Task<Movie> CreateMovie(Movie movie)
         {
             throw new NotImplementedException();
@@ -26,20 +26,18 @@ namespace MoviesApp.Client.ApiServices
 
         public async Task<IEnumerable<Movie>> GetMovies()
         {
-            var movieList = new List<Movie>();
-            movieList.Add(new Movie
-            {
-                Id = 1,
-                Genre = "Comics",
-                Title = "asd",
-                Rating = "9.2",
-                ImageUrl = "image/src",
-                ReleaseDate = DateTime.Now,
-                Owner = "Sudi"
-                
-            });
+            var httpClient = _httpClientFactory.CreateClient("MovieAPIClient");
 
-            return await Task.FromResult(movieList);
+            var request = new HttpRequestMessage(HttpMethod.Get, "/api/movies/");
+
+            var response = await httpClient.SendAsync(request,
+                HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            List<Movie> movies = JsonConvert.DeserializeObject<List<Movie>>(content);
+            return movies;            
         }
 
         public Task<Movie> UpdateMovie(Movie movie)

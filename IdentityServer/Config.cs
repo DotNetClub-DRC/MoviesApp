@@ -1,10 +1,4 @@
-﻿using IdentityModel;
-using IdentityServer4;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
-using System.Collections.Generic;
-using System.Security.Claims;
-
+﻿
 namespace IdentityServer
 {
     public class Config
@@ -31,11 +25,11 @@ namespace IdentityServer
                     AllowRememberConsent = true,
                     RedirectUris = new List<string>()
                     {
-                        "https://localhost:5001/signin-oidc"
+                        "https://localhost:5006/signin-oidc"
                     },
                     PostLogoutRedirectUris = new List<string>()
                     {
-                        "https://localhost:5001/signout-callback-oidc"
+                        "https://localhost:5006/signout-callback-oidc"
                     },
                     ClientSecrets = new List<Secret>()
                     {

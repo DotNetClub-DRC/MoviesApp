@@ -1,8 +1,4 @@
-﻿using MoviesApp.Client.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace MoviesApp.Client.ApiServices
+﻿namespace MoviesApp.Client.ApiServices
 {
     public interface IMovieService
     {

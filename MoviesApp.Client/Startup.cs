@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using MoviesApp.Client.ApiServices;
-
-namespace MoviesApp.Client
+﻿namespace MoviesApp.Client
 {
     public class Startup
     {
@@ -22,6 +15,51 @@ namespace MoviesApp.Client
             services.AddControllersWithViews();
 
             services.AddScoped<IMovieService, MovieService>();
+
+            // Accessing IdentityServer4 via config.cs file
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+            {
+                options.Authority = "https://localhost:6001"; // IdentityServer4 Url
+                options.ClientId = "movie_mvc_client";
+                options.ClientSecret = "sudidav";
+                options.ResponseType = "code";
+
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+
+                options.SaveTokens = true;
+
+                options.GetClaimsFromUserInfoEndpoint = true;
+            });
+
+            services.AddTransient<AuthenticationDelegatingHandler>();
+
+            services.AddHttpClient("MovieAPIClient", client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5001"); // API baseUrl
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            }).AddHttpMessageHandler<AuthenticationDelegatingHandler>();
+
+            services.AddHttpClient("IDPClient", client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:6001"); // IdentityServer4 baseUrl
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            });
+            services.AddSingleton(new ClientCredentialsTokenRequest
+            {
+                Address = "https://localhost:6001/connect/token",
+                ClientId= "movieClient",
+                ClientSecret= "sudidav",
+                Scope = "movieAPI"
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +80,7 @@ namespace MoviesApp.Client
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,6 +1,6 @@
-﻿
-namespace MoviesApp.Client.Controllers
+﻿namespace MoviesApp.Client.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
         private readonly IMovieService _movieService;
@@ -13,7 +13,26 @@ namespace MoviesApp.Client.Controllers
         // GET: Movies
         public async Task<IActionResult> Index()
         {
+            LogTokenAndClaims();
             return View(await _movieService.GetMovies());
+        }
+
+        // Log the Token and the Claims Type to the Debug console
+        public async Task LogTokenAndClaims()
+        {
+            var identityToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.IdToken);
+
+            Debug.WriteLine($"Identity Token: {identityToken}");
+            foreach (var claim in User.Claims)
+            {
+                Debug.WriteLine($"Claim Type: {claim.Type} - Claim Value: {claim.Value}");
+            }
+        }
+
+        public async Task Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
         }
 
         // GET: Movies/Details/5
