@@ -1,5 +1,4 @@
 ﻿global using System;
-global using System.Linq;
 global using System.Diagnostics;
 global using System.Threading.Tasks;
 global using System.Collections.Generic;
@@ -17,9 +16,10 @@ global using Microsoft.AspNetCore.Hosting;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
-global using IdentityModel.Client;
 global using Newtonsoft.Json;
 global using System.Net.Http;
 global using Microsoft.Net.Http.Headers;
 global using MoviesApp.Client.HttpHanders;
 global using System.Threading;
+global using Microsoft.AspNetCore.Http;
+global using IdentityModel.Client;

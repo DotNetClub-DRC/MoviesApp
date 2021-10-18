@@ -28,10 +28,11 @@
                 options.Authority = "https://localhost:6001"; // IdentityServer4 Url
                 options.ClientId = "movie_mvc_client";
                 options.ClientSecret = "sudidav";
-                options.ResponseType = "code";
+                options.ResponseType = "code id_token";
 
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
+                options.Scope.Add("movieAPI");
 
                 options.SaveTokens = true;
 
@@ -53,13 +54,15 @@
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
             });
-            services.AddSingleton(new ClientCredentialsTokenRequest
-            {
-                Address = "https://localhost:6001/connect/token",
-                ClientId= "movieClient",
-                ClientSecret= "sudidav",
-                Scope = "movieAPI"
-            });
+
+            services.AddHttpContextAccessor();
+            //services.AddSingleton(new ClientCredentialsTokenRequest
+            //{
+            //    Address = "https://localhost:6001/connect/token",
+            //    ClientId= "movieClient",
+            //    ClientSecret= "sudidav",
+            //    Scope = "movieAPI"
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
