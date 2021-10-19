@@ -23,3 +23,4 @@ global using MoviesApp.Client.HttpHanders;
 global using System.Threading;
 global using Microsoft.AspNetCore.Http;
 global using IdentityModel.Client;
+global using IdentityModel;

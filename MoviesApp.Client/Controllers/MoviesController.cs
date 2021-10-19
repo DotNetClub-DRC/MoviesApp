@@ -10,6 +10,13 @@
             _movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
         }
 
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Admin()
+        {
+            var userInfo = await _movieService.GetUserInfo();
+            return View(userInfo);
+        }
+
         // GET: Movies
         public async Task<IActionResult> Index()
         {

@@ -1,3 +1,5 @@
+using IdentityServerHost.Quickstart.UI;
+
 namespace IdentityServer
 {
     public class Startup
@@ -11,7 +13,7 @@ namespace IdentityServer
                     .AddInMemoryClients(Config.Clients)
                     .AddInMemoryIdentityResources(Config.IdentityResources)
                     .AddInMemoryApiScopes(Config.ApiScopes)
-                    .AddTestUsers(Config.TestUsers)
+                    .AddTestUsers(TestUsers.Users)  // User the IdentityServer4 generated TestUsers
                     .AddDeveloperSigningCredential();
            
         }
