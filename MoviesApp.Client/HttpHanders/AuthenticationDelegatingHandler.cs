@@ -12,7 +12,9 @@
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+            var accessToken = await _httpContextAccessor
+                .HttpContext
+                .GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
 
             if (!string.IsNullOrWhiteSpace(accessToken))
             {

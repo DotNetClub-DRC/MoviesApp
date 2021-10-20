@@ -20,7 +20,7 @@
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-            LogTokenAndClaims();
+            await LogTokenAndClaims();
             return View(await _movieService.GetMovies());
         }
 

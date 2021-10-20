@@ -53,7 +53,7 @@
 
             services.AddHttpClient("MovieAPIClient", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5001"); // API baseUrl
+                client.BaseAddress = new Uri("https://localhost:5010"); // ApiGateway baseUrl
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
             }).AddHttpMessageHandler<AuthenticationDelegatingHandler>();
